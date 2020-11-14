@@ -1,0 +1,21 @@
+{
+  "name": "geo-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ghaliesh/geo-server.git",
+  "author": "Ghazwan Aliesh",
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "^4.17.9",
+    "@types/node": "^14.14.7",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.14",
+    "nodemon": "^2.0.6",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5",
+    "yup": "^0.29.3"
+  },
+  "scripts": {
+    "start": "nodemon"
+  }
+}
