@@ -4,3 +4,8 @@ export enum IEnvArgs {
   DATABASE_USER_PASSWORD = "DATABASE_USER_PASSWORD",
   DATABASE_URL = "DATABASE_URL",
 }
+
+export interface IPResult {
+  v4: string;
+  v6: string;
+}

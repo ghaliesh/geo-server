@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 
 import { getDataBaseURI, getEnv } from "./utils";
+import { locationRoutes } from "./routes";
 import { IEnvArgs } from "./utils/utils.types";
 
 /** initiate the env variables in .env files */
@@ -12,6 +13,9 @@ const port: string = getEnv(IEnvArgs.PORT);
 const dbURI: string = getDataBaseURI();
 
 const server = express();
+
+server.use(express.json());
+server.use("/location", locationRoutes);
 
 const onDatabaseConnected = () => console.log("connected to database");
 const onDatabaseFailedToConnect = () => console.log("failed to connect");
