@@ -5,6 +5,10 @@
   "repository": "git@github.com:ghaliesh/geo-server.git",
   "author": "Ghazwan Aliesh",
   "license": "MIT",
+  "engines": {
+    "node": "12.x",
+    "yarn": "1.x"
+  },
   "dependencies": {
     "@types/express": "^4.17.9",
     "@types/mongoose": "^5.10.0",
