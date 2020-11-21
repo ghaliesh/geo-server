@@ -9,7 +9,7 @@ node_modules
 logs
 
 # Environment
-*.env*
+*.env
 
 # Misc
 .DS_Store
