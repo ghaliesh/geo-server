@@ -28,4 +28,6 @@ mongoose
 const onServerStarted = () =>
   console.info(`Server is now running on http://localhost:${port}`);
 
+server.get("/", (_, res) => res.status(200).send({ success: true }));
+
 server.listen(port, onServerStarted);
