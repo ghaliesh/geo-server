@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 import { getDataBaseURI, getEnv } from "./utils";
 import { locationRoutes } from "./routes";
+import { attachUserIp } from "./middleware";
 import { IEnvArgs } from "./utils/utils.types";
 
 /** initiate the env variables in .env files */
@@ -15,6 +16,7 @@ const dbURI: string = getDataBaseURI();
 const server = express();
 
 server.use(express.json());
+server.use(attachUserIp);
 server.use("/location", locationRoutes);
 
 const onDatabaseConnected = () => console.log("connected to database");

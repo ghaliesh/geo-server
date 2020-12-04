@@ -1,19 +1,11 @@
 import { IPResult } from "../utils/utils.types";
 import { Router } from "express";
+import { AppRequest, AppResponse } from "@geo/types";
 
 const locationRoute = Router();
 
-locationRoute.get(
-  "/ip",
-  async (req, res): Promise<void> => {
-    try {
-      let ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-      ip = ip.toString().replace("::ffff:", "");
-      res.status(200).send({ ip });
-    } catch (err) {
-      res.status(500).send({ error: "Request failed" });
-    }
-  }
-);
+locationRoute.get("/ip", (req: AppRequest, res: AppResponse): void => {
+  res.status(200).send({ ip: req.userIp });
+});
 
 export default locationRoute;
