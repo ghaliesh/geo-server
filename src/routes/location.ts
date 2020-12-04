@@ -6,10 +6,12 @@ const locationRoute = Router();
 
 locationRoute.get(
   "/ip",
-  async (_, res): Promise<void> => {
+  async (req, res): Promise<void> => {
     try {
+      console.log({ ip: 1 });
       const ip: IPResult = await getIp();
-      res.status(200).send(ip);
+      console.log({ ip });
+      res.status(200).send({ ip: req.ip });
     } catch (err) {
       res.status(500).send({ error: "Request failed" });
     }
