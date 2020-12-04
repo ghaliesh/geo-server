@@ -6,7 +6,7 @@
   "author": "Ghazwan Aliesh",
   "license": "MIT",
   "engines": {
-    "node": "12.x",
+    "node": "15.x",
     "yarn": "1.x"
   },
   "dependencies": {
