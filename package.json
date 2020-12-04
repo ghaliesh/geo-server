@@ -13,7 +13,6 @@
     "express": "^4.17.1",
     "mongoose": "^5.10.14",
     "nodemon": "^2.0.6",
-    "public-ip": "^4.0.2",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.5",
     "yup": "^0.29.3"
