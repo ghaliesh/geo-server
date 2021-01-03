@@ -2,13 +2,15 @@ import mongoose, { Document } from "mongoose";
 
 import { getNow } from "../utils";
 
-export interface UserLocation extends Document {
+export interface Location {
   date: string;
   ip: string;
   country: string;
   city: string;
   geo: { lat: string; long: string };
 }
+
+export type UserLocation = Location & Document;
 
 const schema = new mongoose.Schema({
   date: { type: String, default: getNow() },
@@ -20,5 +22,34 @@ const schema = new mongoose.Schema({
 
 const Location = mongoose.model<UserLocation>("Location", schema);
 
-export const getLocations = async (): Promise<UserLocation[]> =>
-  await Location.find();
+export const getLocations = async (): Promise<UserLocation[]> => {
+  try {
+    const locations = await Location.find();
+    console.log({ locations });
+    return [];
+  } catch (err) {
+    console.log({ err });
+  }
+};
+
+export const storeLocation = async (loc: Location): Promise<UserLocation> => {
+  try {
+    let location = new Location(loc);
+    location = await location.save();
+    return location;
+  } catch (err) {
+    console.log({ err });
+  }
+};
+
+export const stroeLocation = async (): Promise<UserLocation[]> => {
+  try {
+    const locations = await Location.find();
+    console.log({ locations });
+    return [];
+  } catch (err) {
+    console.log({ err });
+  }
+};
+
+export default Location;

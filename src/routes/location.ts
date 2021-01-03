@@ -1,7 +1,8 @@
 import { Router } from "express";
 
-import { getLocations, UserLocation } from "../models";
+import { getLocations, storeLocation, UserLocation } from "../models";
 import { AppRequest, AppResponse } from "@geo/types";
+import { getLocation } from "@geo/utils/api";
 
 const locationRoute = Router();
 
@@ -10,10 +11,19 @@ locationRoute.get("/ip", (req: AppRequest, res: AppResponse): void => {
 });
 
 locationRoute.get(
-  "/",
-  async (req: AppRequest, res: AppResponse): Promise<void> => {
+  "/all-locations",
+  async (_: AppRequest, res: AppResponse): Promise<void> => {
     const loctions: UserLocation[] = await getLocations();
-    res.status(200).send(loctions);
+    res.status(200).send({ loctions });
+  }
+);
+
+locationRoute.post(
+  "/store",
+  async (_: AppRequest, res: AppResponse): Promise<void> => {
+    const location = await getLocation();
+    const result: UserLocation = await storeLocation(location);
+    res.status(200).send({ result });
   }
 );
 

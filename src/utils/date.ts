@@ -1,3 +1,5 @@
 import moment from "moment";
 
-export const getNow = (): string => moment(Date.now()).toISOString();
+type ISOString = string;
+
+export const getNow = (): ISOString => moment(Date.now()).toISOString();
