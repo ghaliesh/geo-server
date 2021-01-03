@@ -22,15 +22,8 @@ const schema = new mongoose.Schema({
 
 const Location = mongoose.model<UserLocation>("Location", schema);
 
-export const getLocations = async (): Promise<UserLocation[]> => {
-  try {
-    const locations = await Location.find();
-    console.log({ locations });
-    return [];
-  } catch (err) {
-    console.log({ err });
-  }
-};
+export const getLocations = async (): Promise<UserLocation[]> =>
+  await Location.find();
 
 export const storeLocation = async (loc: Location): Promise<UserLocation> => {
   try {
