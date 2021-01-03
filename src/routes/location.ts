@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { getLocations, storeLocation, UserLocation } from "../models";
 import { AppRequest, AppResponse } from "@geo/types";
-import { getLocation } from "@geo/utils/api";
+import { getLocation } from "../utils/api";
 
 const locationRoute = Router();
 
