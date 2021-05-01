@@ -1,0 +1,14 @@
+---
+application:
+  name: "geo-server"
+  project: "geo-server"
+  organization: "QoveryCommunity"
+databases:
+- type: "MONGODB"
+  name: "geo"
+routers:
+- name: "main-geo-server"
+  routes:
+  - application_name: "geo-server"
+    paths:
+    - "/*"
