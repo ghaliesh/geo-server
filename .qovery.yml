@@ -6,6 +6,7 @@ application:
 databases:
 - type: "MONGODB"
   name: "geo"
+  version: "4.4"
 routers:
 - name: "main-geo-server"
   routes:
