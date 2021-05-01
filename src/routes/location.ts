@@ -11,18 +11,18 @@ locationRoute.get("/ip", (req: AppRequest, res: AppResponse): void => {
 });
 
 locationRoute.get(
-  "/all-locations",
+  "/",
   async (_: AppRequest, res: AppResponse): Promise<void> => {
     try {
       const loctions: UserLocation[] = await getLocations();
-      res.status(200).send({ loctions });
+      res.send(loctions);
     } catch (error) {
       res.status(500).send({ error });
     }
   }
 );
 
-locationRoute.post(
+locationRoute.get(
   "/store",
   async (_: AppRequest, res: AppResponse): Promise<void> => {
     const location = await getLocation();
