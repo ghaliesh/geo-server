@@ -2,7 +2,7 @@ import mongoose, { Document } from "mongoose";
 
 import { getNow } from "../utils";
 
-export interface Location {
+export interface ILocation {
   date: string;
   ip: string;
   country: string;
@@ -12,7 +12,7 @@ export interface Location {
 
 export type UserLocation = Location & Document;
 
-const schema = new mongoose.Schema({
+const schema = new mongoose.Schema<UserLocation>({
   date: { type: String, default: getNow() },
   ip: { type: String, default: "", required: true, minlength: 2 },
   country: { type: String, required: true },
@@ -22,27 +22,22 @@ const schema = new mongoose.Schema({
 
 const Location = mongoose.model<UserLocation>("Location", schema);
 
-export const getLocations = async (): Promise<UserLocation[]> =>
-  await Location.find();
+export const getLocations = async (): Promise<UserLocation[]> => {
+  try {
+    console.log("kkkkkkkkkkkkk");
+    return await Location.find();
+  } catch (error) {
+    throw new error();
+  }
+};
 
-export const storeLocation = async (loc: Location): Promise<UserLocation> => {
+export const storeLocation = async (loc: ILocation): Promise<UserLocation> => {
   try {
     let location = new Location(loc);
+    console.log({ location });
     location = await location.save();
     return location;
   } catch (err) {
     console.log({ err });
   }
 };
-
-export const stroeLocation = async (): Promise<UserLocation[]> => {
-  try {
-    const locations = await Location.find();
-    console.log({ locations });
-    return [];
-  } catch (err) {
-    console.log({ err });
-  }
-};
-
-export default Location;

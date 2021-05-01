@@ -23,9 +23,15 @@ const onDatabaseConnected = () => console.log("connected to database");
 const onDatabaseFailedToConnect = () => console.log("failed to connect");
 
 mongoose
-  .createConnection(dbURI, { useNewUrlParser: true })
+  .connect(dbURI, { useNewUrlParser: true })
   .then(onDatabaseConnected)
   .catch(onDatabaseFailedToConnect);
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+  console.log("connecssssssted to database");
+});
 
 const onServerStarted = () =>
   console.info(`Server is now running on http://localhost:${port}`);
