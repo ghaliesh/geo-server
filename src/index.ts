@@ -2,7 +2,7 @@ import { config as initiateEnv } from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 
-import { getDataBaseURI, getEnv } from "./utils";
+import { dbError, dbSucess, getDataBaseURI, getEnv, serverStarted } from "./utils";
 import { locationRoutes } from "./routes";
 import { attachUserIp } from "./middleware";
 import { IEnvArgs } from "./utils/utils.types";
@@ -13,29 +13,16 @@ initiateEnv();
 const port: string = getEnv(IEnvArgs.PORT);
 const dbURI: string = getDataBaseURI();
 
-const server = express();
+mongoose
+  .connect(dbURI, { useNewUrlParser: true })
+  .then(dbSucess)
+  .catch(dbError);
 
+const server = express();
 server.use(express.json());
 server.use(attachUserIp);
 server.use("/location", locationRoutes);
 
-const onDatabaseConnected = () => console.log("connected to database");
-const onDatabaseFailedToConnect = () => console.log("failed to connect");
-
-mongoose
-  .connect(dbURI, { useNewUrlParser: true })
-  .then(onDatabaseConnected)
-  .catch(onDatabaseFailedToConnect);
-
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
-  console.log("connecssssssted to database");
-});
-
-const onServerStarted = () =>
-  console.info(`Server is now running on http://localhost:${port}`);
-
 server.get("/", (_, res) => res.status(200).send({ success: true }));
 
-server.listen(port, onServerStarted);
+server.listen(port, serverStarted);
