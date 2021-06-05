@@ -37,6 +37,6 @@ export const storeLocation = async (loc: ILocation): Promise<UserLocation | IErr
     location = await location.save();
     return location;
   } catch (err) {
-    return handleError(err, "location/stroe");
+    return handleError(err, "location/stroe", location);
   }
 };
