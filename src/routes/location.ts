@@ -24,8 +24,8 @@ locationRoute.get(
 
 locationRoute.get(
   "/store",
-  async (_: AppRequest, res: AppResponse): Promise<void> => {
-    const location = await getLocation();
+  async (req: AppRequest, res: AppResponse): Promise<void> => {
+    const location = await getLocation(req.ip);
     const result: UserLocation = await storeLocation(location);
     res.status(200).send({ result });
   }
