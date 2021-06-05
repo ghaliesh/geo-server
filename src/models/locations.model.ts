@@ -1,4 +1,4 @@
-import { handleError, IError } from "@geo/utils/error";
+import { handleError, IError } from "../utils/error";
 import mongoose, { Document } from "mongoose";
 
 import { getNow } from "../utils";

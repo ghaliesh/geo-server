@@ -1,9 +1,9 @@
 import { Router } from "express";
 
 import { getLocations, storeLocation, UserLocation } from "../models";
-import { AppRequest, AppResponse } from "@geo/types";
+import { AppRequest, AppResponse } from "../types";
 import { getLocation } from "../utils/api";
-import { handleError, IError } from "@geo/utils/error";
+import { handleError, IError } from "../utils/error";
 
 const locationRoute = Router();
 
