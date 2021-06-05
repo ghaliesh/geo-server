@@ -4,10 +4,10 @@ import { getEnv } from "./env";
 import fetch from "node-fetch";
 import { IEnvArgs } from "./utils.types";
 
-const apiURL: string = getEnv(IEnvArgs.GEO_API);
 
 export const getLocation = async (ip: string): Promise<ILocation> => {
   try {
+    const apiURL: string = getEnv(IEnvArgs.GEO_API);
     const response = await fetch(`${apiURL}/${ip}`, { method: "get" });
     const location: IAPIResponse = await response.json();
     return {

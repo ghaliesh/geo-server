@@ -24,7 +24,6 @@ const Location = mongoose.model<UserLocation>("Location", schema);
 
 export const getLocations = async (): Promise<UserLocation[]> => {
   try {
-    console.log("kkkkkkkkkkkkk");
     return await Location.find();
   } catch (error) {
     throw new error();
@@ -34,7 +33,6 @@ export const getLocations = async (): Promise<UserLocation[]> => {
 export const storeLocation = async (loc: ILocation): Promise<UserLocation> => {
   try {
     let location = new Location(loc);
-    console.log({ location });
     location = await location.save();
     return location;
   } catch (err) {
