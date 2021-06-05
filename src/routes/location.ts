@@ -1,3 +1,5 @@
+import { getEnv } from "../utils";
+import { IEnvArgs } from "../utils/utils.types";
 import { Router } from "express";
 
 import { getLocations, storeLocation, UserLocation } from "../models";
@@ -32,7 +34,7 @@ locationRoute.get(
       const result: UserLocation | IError = await storeLocation(location);
       res.status(200).send({ result });
     } catch (err) {
-      res.status(500).send({ result: handleError(err, "/location/store", {apiResult: location}) });
+      res.status(500).send({ result: handleError(err, "/location/store", {ip: req.ip, api: getEnv(IEnvArgs.GEO_API)}) });
     }
   }
 );

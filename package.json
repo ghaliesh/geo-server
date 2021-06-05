@@ -21,7 +21,9 @@
     "yup": "^0.29.3"
   },
   "scripts": {
-    "start": "nodemon",
+    "kill-prev": "fuser -k 5000/tcp",
+    "dev": "nodemon",
+    "start": "npm-run-all kill-prev dev",
     "run": "node ./dist/index.js",
     "transbile": "tsc",
     "build": "npm-run-all transbile run "
