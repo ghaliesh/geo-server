@@ -32,7 +32,7 @@ locationRoute.get(
       const result: UserLocation | IError = await storeLocation(location);
       res.status(200).send({ result });
     } catch (err) {
-      res.status(500).send({ result: handleError(err, "/location/store") });
+      res.status(500).send({ result: handleError(err, "/location/store", {apiResult: location}) });
     }
   }
 );
