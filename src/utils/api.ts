@@ -18,6 +18,6 @@ export const getLocation = async (ip: string): Promise<ILocation> => {
       geo: { lat: String(location.lat), long: String(location.lon) },
     };
   } catch (err) {
-    console.log({ err });
+    throw new Error(err);
   }
 };
