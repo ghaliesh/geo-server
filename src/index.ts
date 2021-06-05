@@ -1,8 +1,15 @@
 import { config as initiateEnv } from "dotenv";
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 
-import { dbError, dbSucess, getDataBaseURI, getEnv, serverStarted } from "./utils";
+import {
+  dbError,
+  dbSucess,
+  getDataBaseURI,
+  getEnv,
+  serverStarted,
+} from "./utils";
 import { locationRoutes } from "./routes";
 import { attachUserIp } from "./middleware";
 import { IEnvArgs } from "./utils/utils.types";
@@ -20,6 +27,7 @@ mongoose
 
 const server = express();
 server.use(express.json());
+server.use(cors({ origin: "*" }));
 server.use(attachUserIp);
 server.use("/location", locationRoutes);
 
