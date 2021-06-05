@@ -25,13 +25,15 @@ const Location = mongoose.model<UserLocation>("Location", schema);
 
 export const getLocations = async (): Promise<UserLocation[]> => {
   try {
-    return await Location.find();
+    return await Location.find().sort("-date");
   } catch (error) {
     throw new error();
   }
 };
 
-export const storeLocation = async (loc: ILocation): Promise<UserLocation | IError> => {
+export const storeLocation = async (
+  loc: ILocation
+): Promise<UserLocation | IError> => {
   try {
     let location = new Location(loc);
     location = await location.save();
