@@ -1,3 +1,4 @@
+import { handleError, IError } from "@geo/utils/error";
 import mongoose, { Document } from "mongoose";
 
 import { getNow } from "../utils";
@@ -30,12 +31,12 @@ export const getLocations = async (): Promise<UserLocation[]> => {
   }
 };
 
-export const storeLocation = async (loc: ILocation): Promise<UserLocation> => {
+export const storeLocation = async (loc: ILocation): Promise<UserLocation | IError> => {
   try {
     let location = new Location(loc);
     location = await location.save();
     return location;
   } catch (err) {
-    console.log({ err });
+    return handleError(err, "location/stroe");
   }
 };
