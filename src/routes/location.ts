@@ -29,12 +29,12 @@ locationRoute.get(
   "/store",
   async (req: AppRequest, res: AppResponse): Promise<void> => {
     try {
-      const { ip } = req;
+      const { userIp: ip } = req;
       const location = await getLocation(ip);
       const result: UserLocation | IError = await storeLocation(location);
       res.status(200).send({ result });
     } catch (err) {
-      res.status(500).send({ result: handleError(err, "/location/store", {ip: req.ip, api: getEnv(IEnvArgs.GEO_API)}) });
+      res.status(500).send({ result: handleError(err, "/location/store", {ip: req.userIp, api: getEnv(IEnvArgs.GEO_API)}) });
     }
   }
 );
