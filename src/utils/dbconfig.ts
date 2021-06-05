@@ -7,5 +7,5 @@ export const getDataBaseURI = () => {
   const password: string = encodeURIComponent(
     getEnv(IEnvArgs.DATABASE_USER_PASSWORD)
   );
-  return `mongodb+srv://ghazwan:2522@cluster0.uzbbi.mongodb.net/geo?retryWrites=true&w=majority`;
+  return `mongodb+srv://${username}:${password}@${databaseURI}`;
 };
